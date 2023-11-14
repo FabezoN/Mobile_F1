@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Drivers} from './pages/Drivers';
 import { HomePage } from './pages/HomesPage';
+import { Tracks } from './pages/Tracks';
 
 
 
@@ -15,6 +16,7 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomePage} />
         <Tab.Screen name="Drivers" component={Drivers} />
+        <Tab.Screen name="Tracks" component={Tracks} />
       </Tab.Navigator>
     </NavigationContainer>
   );
