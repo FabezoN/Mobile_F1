@@ -2,9 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {Drivers} from './pages/Drivers';
-import { HomePage } from './pages/HomesPage';
-import { Tracks } from './pages/Tracks';
+import {Drivers} from './src/pages/Drivers';
+import { HomePage } from './src/pages/HomesPage';
+import { Tracks } from './src/pages/Tracks';
 
 
 
