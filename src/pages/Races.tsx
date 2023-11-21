@@ -39,9 +39,9 @@ export function Races() {
 
   return (
     <ScrollView style={{ backgroundColor: "black" }}>
-      <Text style={styles.standings}>Schedule</Text>
+      <Text style={styles.Schedule}>Schedule</Text>
       {data?.MRData.RaceTable.Races.map((item, i) => (
-        <View style={styles.view}>
+        <View style={styles.view} key={i}>
           <Text style={styles.position}>{item.Circuit.Location.country}</Text>
           <Text style={styles.givenName}>
             {format(new Date(item.date), "dd/MM/yyyy")}
@@ -59,12 +59,13 @@ export function Races() {
 }
 
 const styles = StyleSheet.create({
-  standings: {
-    fontWeight: "700",
-    color: "white",
-    fontSize: 34,
-    top: 71,
-    left: 27,
+  Schedule: {
+    fontWeight: '700',
+    color: 'white', 
+    fontSize: 41, 
+    paddingTop: 71,
+    paddingLeft: 27,
+    paddingBottom: 24,
   },
   textDrivers: {
     fontWeight: "700",
@@ -86,9 +87,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   view: {
+
     width: 336,
     height: 148,
-    top: 188,
     backgroundColor: "#1B1A19",
     left: 25,
     marginBottom: 15,

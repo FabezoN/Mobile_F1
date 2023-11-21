@@ -6,7 +6,7 @@ const driverImagesMapping: Record<string, ImageRequireSource> = {
   'hamilton': require('../../assets/Drivers/hamilton.png'),
   'alonso': require('../../assets/Drivers/alonso.png'),
   'ricciardo': require('../../assets/Drivers/ricciardo.png'),
-  'max_verstappen': require('../../Drivers/assets/max_verstappen.png'),
+  'max_verstappen': require('../../assets/Drivers/max_verstappen.png'),
   'leclerc': require('../../assets/Drivers/leclerc.png'),
   'sainz': require('../../assets/Drivers/sainz.png'),
   'bottas': require('../../assets/Drivers/bottas.png'),
@@ -44,7 +44,7 @@ export function Drivers({ navigation }: any) {
           </TouchableOpacity>
         </View>
         {data?.MRData.StandingsTable.StandingsLists[0].DriverStandings.map((item, i) => (
-          <View style={styles.view}>
+          <View style={styles.view} key={i}>
             <View style={styles.textView}>
               <Text style={styles.position} >{item.position}{"\n"}</Text>
               <Text style={styles.givenName} >{item.Driver.givenName}</Text>

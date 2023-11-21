@@ -32,7 +32,7 @@ export function Constructors({ navigation }: any) {
         </TouchableOpacity>
         </View>
         {data?.MRData.StandingsTable.StandingsLists[0].ConstructorStandings.map((item, i) => (
-        <View style={styles.view} >
+        <View style={styles.view} key={i} >
           <View style={styles.textView}>
             <Text style={styles.position} >{item.position}{"\n"}</Text>
             <Text style={styles.Name}>{item.Constructor.name}</Text>
