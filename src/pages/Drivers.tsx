@@ -3,28 +3,28 @@ import { useGetProducts } from '../hooks/useGetDrivers';
 import React from 'react';
 
 const driverImagesMapping: Record<string, ImageRequireSource> = {
-  'hamilton': require('../../assets/hamilton.png'),
-  'alonso': require('../../assets/alonso.png'),
-  'ricciardo': require('../../assets/ricciardo.png'),
-  'max_verstappen': require('../../assets/max_verstappen.png'),
-  'leclerc': require('../../assets/leclerc.png'),
-  'sainz': require('../../assets/sainz.png'),
-  'bottas': require('../../assets/bottas.png'),
-  'gasly': require('../../assets/gasly.png'),
-  'ocon': require('../../assets/ocon.png'),
-  'perez': require('../../assets/perez.png'),
-  'norris': require('../../assets/norris.png'),
-  'russell': require('../../assets/russell.png'),
-  'piastri': require('../../assets/piastri.png'),
-  'stroll': require('../../assets/stroll.png'),
-  'albon': require('../../assets/albon.png'),
-  'tsunoda': require('../../assets/tsunoda.png'),
-  'hulkenberg': require('../../assets/hulkenberg.png'),
-  'zhou': require('../../assets/zhou.png'),
-  'kevin_magnussen': require('../../assets/kevin_magnussen.png'),
-  'lawson': require('../../assets/lawson.png'),
-  'sargeant': require('../../assets/sargeant.png'),
-  'de_vries': require('../../assets/de_vries.png'),
+  'hamilton': require('../../assets/Drivers/hamilton.png'),
+  'alonso': require('../../assets/Drivers/alonso.png'),
+  'ricciardo': require('../../assets/Drivers/ricciardo.png'),
+  'max_verstappen': require('../../assets/Drivers/max_verstappen.png'),
+  'leclerc': require('../../assets/Drivers/leclerc.png'),
+  'sainz': require('../../assets/Drivers/sainz.png'),
+  'bottas': require('../../assets/Drivers/bottas.png'),
+  'gasly': require('../../assets/Drivers/gasly.png'),
+  'ocon': require('../../assets/Drivers/ocon.png'),
+  'perez': require('../../assets/Drivers/perez.png'),
+  'norris': require('../../assets/Drivers/norris.png'),
+  'russell': require('../../assets/Drivers/russell.png'),
+  'piastri': require('../../assets/Drivers/piastri.png'),
+  'stroll': require('../../assets/Drivers/stroll.png'),
+  'albon': require('../../assets/Drivers/albon.png'),
+  'tsunoda': require('../../assets/Drivers/tsunoda.png'),
+  'hulkenberg': require('../../assets/Drivers/hulkenberg.png'),
+  'zhou': require('../../assets/Drivers/zhou.png'),
+  'kevin_magnussen': require('../../assets/Drivers/kevin_magnussen.png'),
+  'lawson': require('../../assets/Drivers/lawson.png'),
+  'sargeant': require('../../assets/Drivers/sargeant.png'),
+  'de_vries': require('../../assets/Drivers/de_vries.png'),
 }
 
 export function Drivers({ navigation }: any) {
@@ -44,7 +44,7 @@ export function Drivers({ navigation }: any) {
           </TouchableOpacity>
         </View>
         {data?.MRData.StandingsTable.StandingsLists[0].DriverStandings.map((item, i) => (
-          <View style={styles.view}>
+          <View style={styles.view} key={i}>
             <View style={styles.textView}>
               <Text style={styles.position} >{item.position}{"\n"}</Text>
               <Text style={styles.givenName} >{item.Driver.givenName}</Text>
