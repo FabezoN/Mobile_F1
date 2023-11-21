@@ -42,13 +42,13 @@ export function Races() {
       <Text style={styles.Schedule}>Schedule</Text>
       {data?.MRData.RaceTable.Races.map((item, i) => (
         <View style={styles.view} key={i}>
-          <Text style={styles.position}>{item.Circuit.Location.country}</Text>
-          <Text style={styles.givenName}>
+          <Text style={styles.country}>{item.Circuit.Location.country}</Text>
+          <Text style={styles.date}>
             {format(new Date(item.date), "dd/MM/yyyy")}
           </Text>
-          <Text style={styles.familyName}>{formatTime(item.time)}</Text>
+          <Text style={styles.time}>{formatTime(item.time)}</Text>
           <Image
-            style={styles.imageDriver}
+            style={styles.flag}
             source={flagImagesMapping[item.raceName]}
           />
         </View>
@@ -59,6 +59,7 @@ export function Races() {
 }
 
 const styles = StyleSheet.create({
+  
   Schedule: {
     fontWeight: '700',
     color: 'white', 
@@ -67,27 +68,7 @@ const styles = StyleSheet.create({
     paddingLeft: 27,
     paddingBottom: 24,
   },
-  textDrivers: {
-    fontWeight: "700",
-    color: "white",
-    top: 156,
-    left: 27,
-    width: 160,
-    textAlign: "center",
-    fontSize: 15,
-  },
-  textConstructors: {
-    fontWeight: "700",
-    opacity: 0.5,
-    color: "white",
-    top: 140,
-    left: 203,
-    width: 160,
-    textAlign: "center",
-    fontSize: 15,
-  },
   view: {
-
     width: 336,
     height: 148,
     backgroundColor: "#1B1A19",
@@ -95,50 +76,35 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderRadius: 14,
   },
-  position: {
+
+  country: {
     color: "white",
     left: 20,
     top: 15,
     fontSize: 20,
     fontWeight: "700",
   },
-  givenName: {
+  date: {
+    color: "white",
+    left: 20,
+    top: 15,
+    fontSize: 20,
+    fontWeight: "700",
+  },
+  time: {
     color: "white",
     left: 20,
     top: 15,
     fontSize: 16,
     fontWeight: "700",
+    paddingTop10: 20,
   },
-  familyName: {
-    color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 20,
-    fontWeight: "700",
-  },
-  constructors: {
-    color: "#CCCDD7",
-    left: 20,
-    top: 15,
-    fontSize: 11,
-    width: 90,
-    fontWeight: "700",
-  },
-  imageDriver: {
+  flag: {
     position: "absolute",
     width: 100,
     height: 100,
     left: 216,
     bottom: 50,
-  },
-  points: {
-    color: "white",
-    fontSize: 20,
-    left: 226,
-    bottom: 125,
-    textAlign: "center",
-    width: 80,
-    fontWeight: "700",
   },
 });
 
