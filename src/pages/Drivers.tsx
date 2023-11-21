@@ -42,6 +42,7 @@ export function Drivers() {
     );
   }
         
+
 const styles = StyleSheet.create({
   standings: {
     fontWeight: '700',
