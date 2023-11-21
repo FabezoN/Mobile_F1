@@ -4,4 +4,8 @@ export class ApiClient {
   static getConstructors = async () => {
     return fetch(`${BASE_URL}/current/constructorStandings.json`).then((res) => res.json());
   };
+
+  static getTracks = async () => {
+    return fetch(`${BASE_URL}/2023/circuits.json`).then((res) => res.json());
+  };
 }
