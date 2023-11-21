@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Drivers} from './src/pages/Drivers';
 import { HomePage } from './src/pages/HomesPage';
-import { Tracks } from './src/pages/Tracks';
+import { Races } from './src/pages/Races';
 import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
 import { Constructors } from './src/pages/Constructors';
 
@@ -26,7 +26,7 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomePage} />
         <Tab.Screen name="Drivers" component={Drivers} />
-        <Tab.Screen name="Tracks" component={Tracks} />
+        <Tab.Screen name="Races" component={Races} />
         <Tab.Screen name="Constructors" component={Constructors} />
       </Tab.Navigator>
     </NavigationContainer>
