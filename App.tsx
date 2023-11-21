@@ -25,7 +25,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={HomePage} />
-        <Tab.Screen name="Drivers" component={Drivers} />
+        <Tab.Screen name="Drivers" component={Drivers} options={{headerShown:false}}/>
         <Tab.Screen name="Tracks" component={Tracks} />
         <Tab.Screen name="Constructors" component={Constructors} />
       </Tab.Navigator>
