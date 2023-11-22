@@ -41,19 +41,22 @@ export function Races() {
     <ScrollView style={{ backgroundColor: "black" }}>
       <Text style={styles.Schedule}>Schedule</Text>
       {data?.MRData.RaceTable.Races.map((item, i) => (
-        <View style={styles.view} key={i}>
-          <Text style={styles.country}>{item.Circuit.Location.country}</Text>
-          <Text style={styles.date}>
+        <View style={styles.view} key={item.raceName}>
+          <View style={styles.textView}>
+            <Text style={styles.country}>{item.Circuit.Location.country}</Text>
+            <Text style={styles.date}>
             {format(new Date(item.date), "dd/MM/yyyy")}
-          </Text>
-          <Text style={styles.time}>{formatTime(item.time)}</Text>
+            </Text>
+            <Text style={styles.time}>{formatTime(item.time)}</Text>
+          </View>
+          <View style={styles.ImageView}>
           <Image
             style={styles.flag}
             source={flagImagesMapping[item.raceName]}
           />
+          </View>
         </View>
       ))}
-      <View style={{ height: 200 }}></View>
     </ScrollView>
   );
 }
@@ -68,33 +71,37 @@ const styles = StyleSheet.create({
     paddingLeft: 27,
     paddingBottom: 24,
   },
-  view: {
-    width: 336,
-    height: 148,
-    backgroundColor: "#1B1A19",
-    left: 25,
-    marginBottom: 15,
+
+  view : {
+    height: 148, 
+    backgroundColor: '#1B1A19', 
+    marginLeft: 27,
+    marginRight: 27,
+    marginBottom: 16, 
     borderRadius: 14,
+    display: 'flex',
+    flexDirection: 'row',
   },
 
   country: {
     color: "white",
     left: 20,
-    top: 15,
-    fontSize: 20,
+    marginTop: 25,
+    fontSize: 24,
     fontWeight: "700",
   },
+
   date: {
     color: "white",
     left: 20,
-    top: 15,
+    marginTop: 5,
     fontSize: 20,
     fontWeight: "700",
   },
   time: {
     color: "white",
     left: 20,
-    top: 15,
+    marginTop: 5,
     fontSize: 16,
     fontWeight: "700",
     paddingTop10: 20,
@@ -102,10 +109,27 @@ const styles = StyleSheet.create({
   flag: {
     position: "absolute",
     width: 100,
-    height: 100,
-    left: 216,
-    bottom: 50,
+    height: 100,  
   },
+
+  imageConstructors : {
+    width: 100, 
+    height: 100,
+  },
+
+  textView : {
+    flex : 1,
+    paddingRight: 46,
+    paddingLeft: 20,
+  },
+  ImageView : {
+    flex : 1,
+    borderRadius: 14,
+    alignItems: 'center',
+    paddingRight: 6,
+    paddingTop: 16,
+    justifyContent: 'center',
+  }
 });
 
 
