@@ -159,7 +159,6 @@ const styles = StyleSheet.create({
     flex : 1,
     paddingRight: 46,
     paddingLeft: 20,
-    
   },
   ImageView : {
     flex : 1,
