@@ -2,7 +2,7 @@ import { Text, ScrollView, View, Image, StyleSheet, TouchableOpacity, ImageRequi
 import { useGetDrivers } from '../hooks/useGetDrivers';
 import React from 'react';
 
-const driverImagesMapping: Record<string, ImageRequireSource> = {
+export const driverImagesMapping: Record<string, ImageRequireSource> = {
   'hamilton': require('../../assets/Drivers/hamilton.png'),
   'alonso': require('../../assets/Drivers/alonso.png'),
   'ricciardo': require('../../assets/Drivers/ricciardo.png'),

@@ -59,7 +59,7 @@ export function Races( { navigation }: any) {
             source={flagImagesMapping[item.raceName]}
           />
           <TouchableOpacity onPress={onPress} style={styles.button}>
-            <Text style={styles.textDetails}>Details</Text>
+          <Text style={styles.textDetails}>Details</Text>
           </TouchableOpacity>
         </View>
       ))}
@@ -76,17 +76,10 @@ const styles = StyleSheet.create({
     paddingLeft: 27,
     paddingBottom: 24,
   },
-  textDrivers: {
-    fontWeight: "700",
-    color: "white",
-    top: 156,
-    left: 27,
-    width: 160,
-    textAlign: "center",
-    fontSize: 15,
-  },
+
   button: {
-    padding: 40,
+    backgroundColor: "green",
+    marginTop: 50,
   },
   textDetails: {
     color: 'blue', // Couleur du texte du bouton
@@ -99,7 +92,6 @@ const styles = StyleSheet.create({
     alignItems: 'center', // Alignement du contenu au centre
   },
   view: {
-
     width: 336,
     height: 148,
     backgroundColor: "#1B1A19",
