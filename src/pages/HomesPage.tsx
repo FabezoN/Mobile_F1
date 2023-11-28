@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Text, View } from 'react-native';
 import { useGetProducts } from '../hooks/useGetConstructors';
 
 

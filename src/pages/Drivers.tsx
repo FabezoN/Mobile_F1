@@ -1,5 +1,5 @@
 import { Text, ScrollView, View, Image, StyleSheet, TouchableOpacity, ImageRequireSource } from 'react-native';
-import { useGetProducts } from '../hooks/useGetDrivers';
+import { useGetDrivers } from '../hooks/useGetDrivers';
 import React from 'react';
 
 const driverImagesMapping: Record<string, ImageRequireSource> = {
@@ -28,7 +28,7 @@ const driverImagesMapping: Record<string, ImageRequireSource> = {
 }
 
 export function Drivers({ navigation }: any) {
-  const {data} = useGetProducts();
+  const {data} = useGetDrivers();
   const onPress = () => {
     navigation.navigate('Constructors')
   }
