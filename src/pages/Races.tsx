@@ -11,7 +11,6 @@ import {
 import { useGetRaces } from "../hooks/useGetRaces";
 import { format } from "date-fns";
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 
 const flagImagesMapping: Record<string, ImageRequireSource> = {
   "Bahrain Grand Prix": require("../../assets/flag/bahrein.png"),
@@ -39,31 +38,32 @@ const flagImagesMapping: Record<string, ImageRequireSource> = {
 }
 
 
-export function Races( { navigation }: any) {
+export function Races( { navigation }: { navigation: any}) {
   const { data } = useGetRaces();
-  const onPress = () => {
+  const onPressDetails = () => {
     navigation.navigate('Details')
   }
   return (
     <ScrollView style={{ backgroundColor: "black" }}>
-      <Text style={styles.Schedule}>Schedule</Text>
-      {data?.MRData.RaceTable.Races.map((item, i) => (
-        <View style={styles.view} key={i}>
-          <View style={styles.textView}>
-          <Text style={styles.country}>{item.Circuit.Location.country}</Text>
-          <Text style={styles.Date}>
-            {format(new Date(item.date), "dd/MM/yyyy")}
-          </Text>
-          <Text style={styles.Hours}>{formatTime(item.time)}</Text>
-          <TouchableOpacity onPress={onPress} style={styles.button}>
-          <Text style={styles.textDetails}>Details</Text>
+      <Text style={styles.Schedule}>Racing</Text>
+      <View style= {styles.button}>
+      <TouchableOpacity style={styles.boxUpcoming}>
+            <Text style={styles.textUpcoming}>Upcoming</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.boxPast}>
+            <Text style={styles.textPast}>Past</Text>
           </TouchableOpacity>
           </View>
-          <View style={styles.imageView}>
-            <Image
-            style={styles.imageDriver}
-            source={flagImagesMapping[item.raceName]}
-             />
+      {data?.MRData.RaceTable.Races.map((item, i) => (
+        <View style={styles.view} key={i}>
+          <View style={styles.left}>
+          <Text style={styles.date}>{format(new Date(item.FirstPractice.date), "dd")} - {format(new Date(item.date), "dd")}</Text>
+          <Text style={styles.mounth}>{format(new Date(item.FirstPractice.date), "MM")}</Text>
+          </View>
+          <View style={styles.right}>
+          <Text style={styles.round}>Round {item.round}</Text>
+          <Text style={styles.country}>{item.Circuit.Location.country}</Text>
+          <Text style={styles.racename}>{item.raceName}</Text>
           </View>
         </View>
       ))}
@@ -72,75 +72,94 @@ export function Races( { navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  Schedule: {
-    fontWeight: '700',
-    color: 'white', 
-    fontSize: 41, 
-    paddingTop: 71,
-    paddingLeft: 27,
-    paddingBottom: 24,
-  },
 
-  view : {
-    height: 148, 
-    backgroundColor: '#1B1A19', 
+  view: {
+    height: 104,
+    backgroundColor: "#1B1A19",
+    marginBottom: 15,
+    borderRadius: 14,
+    display: "flex",
+    flexDirection: "row",
     marginLeft: 27,
     marginRight: 27,
-    marginBottom: 16, 
-    borderRadius: 14,
+  },
+
+  left:{
+    flex: 1,
+
+  },
+  right:{
+    flex: 1,
+  },
+  date:{
+    paddingTop: 30,
+    paddingLeft: 20,
+    color: "white",
+    fontWeight: "700",
+    fontSize: 13,
+    paddingBottom: 11,
+  },
+  mounth:{
+    color: "white",
+    fontWeight: "700",
+    fontSize: 11,
+    marginLeft: 36,
+    marginBottom:32,
+    backgroundColor: "rgba(255, 255, 255, 0.1)", 
+  },  
+
+
+  textPast : {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+
+  boxPast:{
+    flex: 1,height: 44,
+    borderTopWidth: 5,
+    borderRightWidth: 5,
+    borderTopRightRadius: 15,
+    borderColor: 'red',
+    justifyContent: 'center',
+  },
+
+  boxUpcoming:{
+    flex: 1,height: 44,
+    borderTopWidth: 5,
+    borderRightWidth: 5,
+    borderTopRightRadius: 15,
+    borderColor: 'red',
+    justifyContent: 'center',
+  },
+
+  textUpcoming: {
+    textAlign: 'center',
+    color: 'white', 
+    fontWeight: '700',
+    fontSize: 15,
+  },
+  button: {
+    flex:1,
+    paddingTop:32,
     display: 'flex',
     flexDirection: 'row',
+    paddingRight: 27,
+    paddingLeft: 27,
+    justifyContent: 'space-between',
+    paddingBottom: 24,
   },
-
-
-  textView : {
-    flex : 1,
-    paddingRight: 46,
-    paddingLeft: 20,
+  textDetails: {
+    color: 'blue', // Couleur du texte du bouton
+    fontWeight: 'bold', // Gras
   },
-
-  country : {
-    color: 'white', 
-    fontSize: 20, 
-    fontWeight: '700',
-    paddingTop: 20,
-    paddingBottom:5,
+  boxDetails : {
+    backgroundColor: '#3498db', // Couleur de fond du bouton
+    padding: 10, // Espacement intérieur du bouton
+    borderRadius: 5, // Coins arrondis
+    alignItems: 'center', // Alignement du contenu au centre
   },
-
-  Date : {
-    color: 'white',
-    fontSize: 16, 
-    fontWeight: '700',
-    ppaddingBottom:5,
-  },
-
-  Hours : {
-    color: 'white',
-    fontSize: 20, 
-    fontWeight: '700',
-    paddingBottom:5,
-  },
-  imageDriver : {
-    width: 100, 
-    height: 100,
-  },
-
-  imageView : {
-    flex : 1,
-    borderRadius: 14,
-    alignItems: 'center',
-    paddingTop: 16,
-  },
-  textDetails :{
-    paddingLeft: 10,
-    color: '#0671E8',
-    fontSize: 15,
-    paddingTop:5,
-    textDecorationLine: 'underline',  
-  },
-  button:{
-    borderRadius: 14,
-  }
 });
 
 
