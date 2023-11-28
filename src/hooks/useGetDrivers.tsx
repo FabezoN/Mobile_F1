@@ -42,7 +42,7 @@ export type DriversTable = {
     }
 }
 
-export const useGetProducts = () => {
+export const useGetDrivers = () => {
     return useQuery<DriversTable>({
       queryKey: ["DriverTable"],
       queryFn: ApiClient.getDrivers,
