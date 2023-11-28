@@ -11,7 +11,6 @@ import {
 import { useGetRaces } from "../hooks/useGetRaces";
 import { format } from "date-fns";
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 
 const flagImagesMapping: Record<string, ImageRequireSource> = {
   "Bahrain Grand Prix": require("../../assets/flag/bahrein.png"),
@@ -39,28 +38,33 @@ const flagImagesMapping: Record<string, ImageRequireSource> = {
 }
 
 
-export function Races( { navigation }: any) {
+export function Races( { navigation }: { navigation: any}) {
   const { data } = useGetRaces();
-  const onPress = () => {
+  const onPressDetails = () => {
     navigation.navigate('Details')
   }
   return (
     <ScrollView style={{ backgroundColor: "black" }}>
-      <Text style={styles.Schedule}>Schedule</Text>
+      <Text style={styles.Schedule}>Racing</Text>
+      <View style= {styles.button}>
+      <TouchableOpacity style={styles.boxUpcoming}>
+            <Text style={styles.textUpcoming}>Upcoming</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.boxPast}>
+            <Text style={styles.textPast}>Past</Text>
+          </TouchableOpacity>
+          </View>
       {data?.MRData.RaceTable.Races.map((item, i) => (
         <View style={styles.view} key={i}>
-          <Text style={styles.position}>{item.Circuit.Location.country}</Text>
-          <Text style={styles.givenName}>
-            {format(new Date(item.date), "dd/MM/yyyy")}
-          </Text>
-          <Text style={styles.familyName}>{formatTime(item.time)}</Text>
-          <Image
-            style={styles.imageDriver}
-            source={flagImagesMapping[item.raceName]}
-          />
-          <TouchableOpacity onPress={onPress} style={styles.button}>
-            <Text style={styles.textDetails}>Details</Text>
-          </TouchableOpacity>
+          <View style={styles.left}>
+          <Text style={styles.date}>{format(new Date(item.FirstPractice.date), "dd")} - {format(new Date(item.date), "dd")}</Text>
+          <Text style={styles.mounth}>{format(new Date(item.FirstPractice.date), "MM")}</Text>
+          </View>
+          <View style={styles.right}>
+          <Text style={styles.round}>Round {item.round}</Text>
+          <Text style={styles.country}>{item.Circuit.Location.country}</Text>
+          <Text style={styles.racename}>{item.raceName}</Text>
+          </View>
         </View>
       ))}
     </ScrollView>
@@ -68,25 +72,83 @@ export function Races( { navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  Schedule: {
-    fontWeight: '700',
-    color: 'white', 
-    fontSize: 41, 
-    paddingTop: 71,
-    paddingLeft: 27,
-    paddingBottom: 24,
+
+  view: {
+    height: 104,
+    backgroundColor: "#1B1A19",
+    marginBottom: 15,
+    borderRadius: 14,
+    display: "flex",
+    flexDirection: "row",
+    marginLeft: 27,
+    marginRight: 27,
   },
-  textDrivers: {
-    fontWeight: "700",
+
+  left:{
+    flex: 1,
+
+  },
+  right:{
+    flex: 1,
+  },
+  date:{
+    paddingTop: 30,
+    paddingLeft: 20,
     color: "white",
-    top: 156,
-    left: 27,
-    width: 160,
-    textAlign: "center",
+    fontWeight: "700",
+    fontSize: 13,
+    paddingBottom: 11,
+  },
+  mounth:{
+    color: "white",
+    fontWeight: "700",
+    fontSize: 11,
+    marginLeft: 36,
+    marginBottom:32,
+    backgroundColor: "rgba(255, 255, 255, 0.1)", 
+  },  
+
+
+  textPast : {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+
+  boxPast:{
+    flex: 1,height: 44,
+    borderTopWidth: 5,
+    borderRightWidth: 5,
+    borderTopRightRadius: 15,
+    borderColor: 'red',
+    justifyContent: 'center',
+  },
+
+  boxUpcoming:{
+    flex: 1,height: 44,
+    borderTopWidth: 5,
+    borderRightWidth: 5,
+    borderTopRightRadius: 15,
+    borderColor: 'red',
+    justifyContent: 'center',
+  },
+
+  textUpcoming: {
+    textAlign: 'center',
+    color: 'white', 
+    fontWeight: '700',
     fontSize: 15,
   },
   button: {
-    padding: 40,
+    flex:1,
+    paddingTop:32,
+    display: 'flex',
+    flexDirection: 'row',
+    paddingRight: 27,
+    paddingLeft: 27,
+    justifyContent: 'space-between',
+    paddingBottom: 24,
   },
   textDetails: {
     color: 'blue', // Couleur du texte du bouton
@@ -97,60 +159,6 @@ const styles = StyleSheet.create({
     padding: 10, // Espacement intérieur du bouton
     borderRadius: 5, // Coins arrondis
     alignItems: 'center', // Alignement du contenu au centre
-  },
-  view: {
-
-    width: 336,
-    height: 148,
-    backgroundColor: "#1B1A19",
-    left: 25,
-    marginBottom: 15,
-    borderRadius: 14,
-  },
-  position: {
-    color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 20,
-    fontWeight: "700",
-  },
-  givenName: {
-    color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  familyName: {
-    color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 20,
-    fontWeight: "700",
-  },
-  constructors: {
-    color: "#CCCDD7",
-    left: 20,
-    top: 15,
-    fontSize: 11,
-    width: 90,
-    fontWeight: "700",
-  },
-  imageDriver: {
-    position: "absolute",
-    width: 100,
-    height: 100,
-    left: 216,
-    bottom: 50,
-  },
-  points: {
-    color: "white",
-    fontSize: 20,
-    left: 226,
-    bottom: 125,
-    textAlign: "center",
-    width: 80,
-    fontWeight: "700",
   },
 });
 

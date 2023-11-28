@@ -30,19 +30,19 @@ export type races = {
                 }
                 date: string;
                 time: string;
-                firstPractice:{
+                FirstPractice:{
                     date: string;
                     time: string;
                 }
-                songPractice:{
+                SecondPractice:{
                     date: string;
                     time: string;
                 }
-                thirdPractice:{
+                ThirdPractice:{
                     date: string;
                     time: string;
                 }
-                qualifying:{
+                Qualifying:{
                     date: string;
                     time: string;
                 }
