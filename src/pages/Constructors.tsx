@@ -74,7 +74,7 @@ export function Constructors({ navigation }: any) {
 
     textDrivers: {
       textAlign: 'center',
-      color: 'white', 
+      color: 'grey', 
       fontWeight: '700',
       fontSize: 15,
     },

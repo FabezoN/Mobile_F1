@@ -16,6 +16,7 @@ export function HomePage({ navigation }: any) {
     return (
       <ScrollView style={styles.main}>
         <Text style={styles.Home}>Home</Text>
+        <Text style={styles.Top}>Top Drivers :  </Text>
         <View style= {styles.viewDrivers}>
         {data?.MRData.StandingsTable.StandingsLists[0].DriverStandings.slice(0,3).map((item, i) => (
            <Pressable style={styles.drivers} onPress ={onPress}>
@@ -60,7 +61,7 @@ export function HomePage({ navigation }: any) {
       backgroundColor: '#1B1A19',
       marginRight: 27,
       marginLeft: 27,
-      marginTop: 32,
+      marginTop: 20,
     },
     drivers: {
       display: 'flex',
@@ -121,4 +122,18 @@ export function HomePage({ navigation }: any) {
       fontSize: 13,
       textAlign: 'center',
     },
+    Top:{
+      fontWeight: '700',
+      color: 'white', 
+      fontSize: 25, 
+      borderColor: 'red',
+      borderWidth: 3,
+      borderRadius: 14,
+      marginRight: 200,
+      marginLeft: 27,
+      paddingLeft: 10,
+      justifyContent: 'center',
+      alignItems: 'center', 
+      marginTop: 10,
+    }
   })
