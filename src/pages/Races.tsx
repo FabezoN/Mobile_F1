@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     color: '#0671E8',
     fontSize: 15,
     paddingTop:5,
-    textDecoration: 'underline',
+    textDecorationLine: 'underline',  
   },
   button:{
     borderRadius: 14,
