@@ -94,8 +94,8 @@ export function Constructors({ navigation }: any) {
     boxConstructors : {
       borderTopRightRadius: 15,
       borderColor: 'red',
-      borderTopWidth: 5,
-      borderRightWidth: 5,
+      borderTopWidth: 2,
+      borderRightWidth: 2,
       flex: 1,
       height: 44,
       justifyContent: 'center',
