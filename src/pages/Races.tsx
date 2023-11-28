@@ -49,12 +49,14 @@ export function Races( { navigation }: { navigation: any}) {
 }
 
 const styles = StyleSheet.create({
+  
   Schedule: {
     fontWeight: '700',
     color: 'white', 
     fontSize: 41, 
     paddingTop: 71,
     paddingLeft: 27,
+
   },
   view: {
     height: 104,
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     alignItems: 'center',
   },
+
   mounth:{
     color: "white",
     fontWeight: "400",
