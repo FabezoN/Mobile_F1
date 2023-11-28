@@ -116,7 +116,6 @@ export function Constructors({ navigation }: any) {
       flex : 1,
       paddingRight: 46,
       paddingLeft: 20,
-  
     },
 
     position : {

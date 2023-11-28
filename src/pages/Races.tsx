@@ -49,18 +49,22 @@ export function Races( { navigation }: any) {
       <Text style={styles.Schedule}>Schedule</Text>
       {data?.MRData.RaceTable.Races.map((item, i) => (
         <View style={styles.view} key={i}>
-          <Text style={styles.position}>{item.Circuit.Location.country}</Text>
-          <Text style={styles.givenName}>
+          <View style={styles.textView}>
+          <Text style={styles.country}>{item.Circuit.Location.country}</Text>
+          <Text style={styles.Date}>
             {format(new Date(item.date), "dd/MM/yyyy")}
           </Text>
-          <Text style={styles.familyName}>{formatTime(item.time)}</Text>
-          <Image
-            style={styles.imageDriver}
-            source={flagImagesMapping[item.raceName]}
-          />
+          <Text style={styles.Hours}>{formatTime(item.time)}</Text>
           <TouchableOpacity onPress={onPress} style={styles.button}>
           <Text style={styles.textDetails}>Details</Text>
           </TouchableOpacity>
+          </View>
+          <View style={styles.imageView}>
+            <Image
+            style={styles.imageDriver}
+            source={flagImagesMapping[item.raceName]}
+             />
+          </View>
         </View>
       ))}
     </ScrollView>
@@ -77,73 +81,66 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
 
-  button: {
-    backgroundColor: "green",
-    marginTop: 50,
-  },
-  textDetails: {
-    color: 'blue', // Couleur du texte du bouton
-    fontWeight: 'bold', // Gras
-  },
-  boxDetails : {
-    backgroundColor: '#3498db', // Couleur de fond du bouton
-    padding: 10, // Espacement intérieur du bouton
-    borderRadius: 5, // Coins arrondis
-    alignItems: 'center', // Alignement du contenu au centre
-  },
-  view: {
-    width: 336,
-    height: 148,
-    backgroundColor: "#1B1A19",
-    left: 25,
-    marginBottom: 15,
+  view : {
+    height: 148, 
+    backgroundColor: '#1B1A19', 
+    marginLeft: 27,
+    marginRight: 27,
+    marginBottom: 16, 
     borderRadius: 14,
+    display: 'flex',
+    flexDirection: 'row',
   },
-  position: {
-    color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 20,
-    fontWeight: "700",
+
+
+  textView : {
+    flex : 1,
+    paddingRight: 46,
+    paddingLeft: 20,
   },
-  givenName: {
-    color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 16,
-    fontWeight: "700",
+
+  country : {
+    color: 'white', 
+    fontSize: 20, 
+    fontWeight: '700',
+    paddingTop: 20,
+    paddingBottom:5,
   },
-  familyName: {
-    color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 20,
-    fontWeight: "700",
+
+  Date : {
+    color: 'white',
+    fontSize: 16, 
+    fontWeight: '700',
+    ppaddingBottom:5,
   },
-  constructors: {
-    color: "#CCCDD7",
-    left: 20,
-    top: 15,
-    fontSize: 11,
-    width: 90,
-    fontWeight: "700",
+
+  Hours : {
+    color: 'white',
+    fontSize: 20, 
+    fontWeight: '700',
+    paddingBottom:5,
   },
-  imageDriver: {
-    position: "absolute",
-    width: 100,
+  imageDriver : {
+    width: 100, 
     height: 100,
-    left: 216,
-    bottom: 50,
   },
-  points: {
-    color: "white",
-    fontSize: 20,
-    left: 226,
-    bottom: 125,
-    textAlign: "center",
-    width: 80,
-    fontWeight: "700",
+
+  imageView : {
+    flex : 1,
+    borderRadius: 14,
+    alignItems: 'center',
+    paddingTop: 16,
   },
+  textDetails :{
+    paddingLeft: 10,
+    color: '#0671E8',
+    fontSize: 15,
+    paddingTop:5,
+    textDecoration: 'underline',
+  },
+  button:{
+    borderRadius: 14,
+  }
 });
 
 
