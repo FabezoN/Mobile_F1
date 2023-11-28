@@ -6,37 +6,44 @@ import {
   ImageRequireSource,
   TouchableOpacity,
   ScrollView,
+  Button,
 } from "react-native";
 import { useGetRaces } from "../hooks/useGetRaces";
 import { format } from "date-fns";
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-export function Races() {
+const flagImagesMapping: Record<string, ImageRequireSource> = {
+  "Bahrain Grand Prix": require("../../assets/flag/bahrein.png"),
+  "Saudi Arabian Grand Prix": require("../../assets/flag/arabie-saoudite.png"),
+  "Australian Grand Prix": require("../../assets/flag/australie.png"),
+  "Azerbaijan Grand Prix": require("../../assets/flag/azerbaidjan.png"),
+  "Miami Grand Prix": require("../../assets/flag/etats-unis.png"),
+  "Monaco Grand Prix": require("../../assets/flag/monaco.png"),
+  "Spanish Grand Prix": require("../../assets/flag/espagne.png"),
+  "Canadian Grand Prix": require("../../assets/flag/canada.png"),
+  "Austrian Grand Prix": require("../../assets/flag/autriche.png"),
+  "British Grand Prix": require("../../assets/flag/royaume-uni.png"),
+  "Hungarian Grand Prix": require("../../assets/flag/hongrie.png"),
+  "Belgian Grand Prix": require("../../assets/flag/belgique.png"),
+  "Dutch Grand Prix": require("../../assets/flag/pays-bas.png"),
+  "Italian Grand Prix": require("../../assets/flag/italie.png"),
+  "Singapore Grand Prix": require("../../assets/flag/singapore.png"),
+  "Japanese Grand Prix": require("../../assets/flag/japon.png"),
+  "Qatar Grand Prix": require("../../assets/flag/qatar.png"),
+  "United States Grand Prix": require("../../assets/flag/etats-unis.png"),
+  "Mexico City Grand Prix": require("../../assets/flag/mexique.png"),
+  "São Paulo Grand Prix": require("../../assets/flag/bresil.png"),
+  "Las Vegas Grand Prix": require("../../assets/flag/etats-unis.png"),
+  "Abu Dhabi Grand Prix": require("../../assets/flag/abu-dhabi.png"),
+}
+
+
+export function Races( { navigation }: any) {
   const { data } = useGetRaces();
-  const flagImagesMapping: Record<string, ImageRequireSource> = {
-    "Bahrain Grand Prix": require("../../assets/flag/bahrein.png"),
-    "Saudi Arabian Grand Prix": require("../../assets/flag/arabie-saoudite.png"),
-    "Australian Grand Prix": require("../../assets/flag/australie.png"),
-    "Azerbaijan Grand Prix": require("../../assets/flag/azerbaidjan.png"),
-    "Miami Grand Prix": require("../../assets/flag/etats-unis.png"),
-    "Monaco Grand Prix": require("../../assets/flag/monaco.png"),
-    "Spanish Grand Prix": require("../../assets/flag/espagne.png"),
-    "Canadian Grand Prix": require("../../assets/flag/canada.png"),
-    "Austrian Grand Prix": require("../../assets/flag/autriche.png"),
-    "British Grand Prix": require("../../assets/flag/royaume-uni.png"),
-    "Hungarian Grand Prix": require("../../assets/flag/hongrie.png"),
-    "Belgian Grand Prix": require("../../assets/flag/belgique.png"),
-    "Dutch Grand Prix": require("../../assets/flag/pays-bas.png"),
-    "Italian Grand Prix": require("../../assets/flag/italie.png"),
-    "Singapore Grand Prix": require("../../assets/flag/singapore.png"),
-    "Japanese Grand Prix": require("../../assets/flag/japon.png"),
-    "Qatar Grand Prix": require("../../assets/flag/qatar.png"),
-    "United States Grand Prix": require("../../assets/flag/etats-unis.png"),
-    "Mexico City Grand Prix": require("../../assets/flag/mexique.png"),
-    "São Paulo Grand Prix": require("../../assets/flag/bresil.png"),
-    "Las Vegas Grand Prix": require("../../assets/flag/etats-unis.png"),
-    "Abu Dhabi Grand Prix": require("../../assets/flag/abu-dhabi.png"),
-  };
-
+  const onPress = () => {
+    navigation.navigate('Details')
+  }
   return (
     <ScrollView style={{ backgroundColor: "black" }}>
       <Text style={styles.Schedule}>Schedule</Text>
@@ -51,9 +58,11 @@ export function Races() {
             style={styles.imageDriver}
             source={flagImagesMapping[item.raceName]}
           />
+          <TouchableOpacity onPress={onPress} style={styles.button}>
+            <Text style={styles.textDetails}>Details</Text>
+          </TouchableOpacity>
         </View>
       ))}
-      <View style={{ height: 200 }}></View>
     </ScrollView>
   );
 }
@@ -76,15 +85,18 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
   },
-  textConstructors: {
-    fontWeight: "700",
-    opacity: 0.5,
-    color: "white",
-    top: 140,
-    left: 203,
-    width: 160,
-    textAlign: "center",
-    fontSize: 15,
+  button: {
+    padding: 40,
+  },
+  textDetails: {
+    color: 'blue', // Couleur du texte du bouton
+    fontWeight: 'bold', // Gras
+  },
+  boxDetails : {
+    backgroundColor: '#3498db', // Couleur de fond du bouton
+    padding: 10, // Espacement intérieur du bouton
+    borderRadius: 5, // Coins arrondis
+    alignItems: 'center', // Alignement du contenu au centre
   },
   view: {
 
