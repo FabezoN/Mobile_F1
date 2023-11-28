@@ -48,17 +48,14 @@ export function Races( { navigation }: any) {
     <ScrollView style={{ backgroundColor: "black" }}>
       <Text style={styles.Schedule}>Schedule</Text>
       {data?.MRData.RaceTable.Races.map((item, i) => (
-        <View style={styles.view} key={item.raceName}>
-          <View style={styles.textView}>
-            <Text style={styles.country}>{item.Circuit.Location.country}</Text>
-            <Text style={styles.date}>
+        <View style={styles.view} key={i}>
+          <Text style={styles.position}>{item.Circuit.Location.country}</Text>
+          <Text style={styles.givenName}>
             {format(new Date(item.date), "dd/MM/yyyy")}
-            </Text>
-            <Text style={styles.time}>{formatTime(item.time)}</Text>
-          </View>
-          <View style={styles.ImageView}>
+          </Text>
+          <Text style={styles.familyName}>{formatTime(item.time)}</Text>
           <Image
-            style={styles.flag}
+            style={styles.imageDriver}
             source={flagImagesMapping[item.raceName]}
           />
           <TouchableOpacity onPress={onPress} style={styles.button}>
@@ -71,7 +68,6 @@ export function Races( { navigation }: any) {
 }
 
 const styles = StyleSheet.create({
-  
   Schedule: {
     fontWeight: '700',
     color: 'white', 
@@ -110,57 +106,52 @@ const styles = StyleSheet.create({
     left: 25,
     marginBottom: 15,
     borderRadius: 14,
-    display: 'flex',
-    flexDirection: 'row',
   },
-
-  country: {
+  position: {
     color: "white",
     left: 20,
-    marginTop: 25,
-    fontSize: 24,
-    fontWeight: "700",
-  },
-
-  date: {
-    color: "white",
-    left: 20,
-    marginTop: 5,
+    top: 15,
     fontSize: 20,
     fontWeight: "700",
   },
-  time: {
+  givenName: {
     color: "white",
     left: 20,
-    marginTop: 5,
+    top: 15,
     fontSize: 16,
     fontWeight: "700",
-    paddingTop10: 20,
   },
-  flag: {
+  familyName: {
+    color: "white",
+    left: 20,
+    top: 15,
+    fontSize: 20,
+    fontWeight: "700",
+  },
+  constructors: {
+    color: "#CCCDD7",
+    left: 20,
+    top: 15,
+    fontSize: 11,
+    width: 90,
+    fontWeight: "700",
+  },
+  imageDriver: {
     position: "absolute",
     width: 100,
-    height: 100,  
-  },
-
-  imageConstructors : {
-    width: 100, 
     height: 100,
+    left: 216,
+    bottom: 50,
   },
-
-  textView : {
-    flex : 1,
-    paddingRight: 46,
-    paddingLeft: 20,
+  points: {
+    color: "white",
+    fontSize: 20,
+    left: 226,
+    bottom: 125,
+    textAlign: "center",
+    width: 80,
+    fontWeight: "700",
   },
-  ImageView : {
-    flex : 1,
-    borderRadius: 14,
-    alignItems: 'center',
-    paddingRight: 6,
-    paddingTop: 16,
-    justifyContent: 'center',
-  }
 });
 
 
