@@ -12,31 +12,6 @@ import { useGetRaces } from "../hooks/useGetRaces";
 import { format } from "date-fns";
 import React from 'react';
 
-const flagImagesMapping: Record<string, ImageRequireSource> = {
-  "Bahrain Grand Prix": require("../../assets/flag/bahrein.png"),
-  "Saudi Arabian Grand Prix": require("../../assets/flag/arabie-saoudite.png"),
-  "Australian Grand Prix": require("../../assets/flag/australie.png"),
-  "Azerbaijan Grand Prix": require("../../assets/flag/azerbaidjan.png"),
-  "Miami Grand Prix": require("../../assets/flag/etats-unis.png"),
-  "Monaco Grand Prix": require("../../assets/flag/monaco.png"),
-  "Spanish Grand Prix": require("../../assets/flag/espagne.png"),
-  "Canadian Grand Prix": require("../../assets/flag/canada.png"),
-  "Austrian Grand Prix": require("../../assets/flag/autriche.png"),
-  "British Grand Prix": require("../../assets/flag/royaume-uni.png"),
-  "Hungarian Grand Prix": require("../../assets/flag/hongrie.png"),
-  "Belgian Grand Prix": require("../../assets/flag/belgique.png"),
-  "Dutch Grand Prix": require("../../assets/flag/pays-bas.png"),
-  "Italian Grand Prix": require("../../assets/flag/italie.png"),
-  "Singapore Grand Prix": require("../../assets/flag/singapore.png"),
-  "Japanese Grand Prix": require("../../assets/flag/japon.png"),
-  "Qatar Grand Prix": require("../../assets/flag/qatar.png"),
-  "United States Grand Prix": require("../../assets/flag/etats-unis.png"),
-  "Mexico City Grand Prix": require("../../assets/flag/mexique.png"),
-  "São Paulo Grand Prix": require("../../assets/flag/bresil.png"),
-  "Las Vegas Grand Prix": require("../../assets/flag/etats-unis.png"),
-  "Abu Dhabi Grand Prix": require("../../assets/flag/abu-dhabi.png"),
-}
-
 
 export function Races( { navigation }: { navigation: any}) {
   const { data } = useGetRaces();
@@ -47,18 +22,20 @@ export function Races( { navigation }: { navigation: any}) {
     <ScrollView style={{ backgroundColor: "black" }}>
       <Text style={styles.Schedule}>Racing</Text>
       <View style= {styles.button}>
-      <TouchableOpacity style={styles.boxUpcoming}>
-            <Text style={styles.textUpcoming}>Upcoming</Text>
+        <TouchableOpacity style={styles.boxDrivers}>
+          <Text style={styles.textDrivers}>Upcoming</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.boxPast}>
-            <Text style={styles.textPast}>Past</Text>
-          </TouchableOpacity>
-          </View>
+        <TouchableOpacity  style={styles.boxConstructors}>
+          <Text style={styles.textConstructors}>Past</Text>
+        </TouchableOpacity>
+        </View>
       {data?.MRData.RaceTable.Races.map((item, i) => (
         <View style={styles.view} key={i}>
           <View style={styles.left}>
           <Text style={styles.date}>{format(new Date(item.FirstPractice.date), "dd")} - {format(new Date(item.date), "dd")}</Text>
-          <Text style={styles.mounth}>{format(new Date(item.FirstPractice.date), "MM")}</Text>
+          <View style={styles.viewMounth}>
+            <Text style={styles.mounth}>{(new Date(item.FirstPractice.date).toLocaleString('en-EN', {month: 'short'}) )}</Text>
+          </View>
           </View>
           <View style={styles.right}>
           <Text style={styles.round}>Round {item.round}</Text>
@@ -72,7 +49,13 @@ export function Races( { navigation }: { navigation: any}) {
 }
 
 const styles = StyleSheet.create({
-
+  Schedule: {
+    fontWeight: '700',
+    color: 'white', 
+    fontSize: 41, 
+    paddingTop: 71,
+    paddingLeft: 27,
+  },
   view: {
     height: 104,
     backgroundColor: "#1B1A19",
@@ -86,61 +69,64 @@ const styles = StyleSheet.create({
 
   left:{
     flex: 1,
-
+    width: 48,
+    marginLeft: 28,
+    marginTop: 30,
+    marginBottom: 29,
   },
   right:{
-    flex: 1,
+    width: 207,
+    marginLeft: 47,
   },
   date:{
-    paddingTop: 30,
-    paddingLeft: 20,
+    MarginLeft: 20,
     color: "white",
     fontWeight: "700",
     fontSize: 13,
     paddingBottom: 11,
+    alignItems: 'center',
+  },
+  viewMounth:{
+    display:'flex',
+    paddingTop: 3,
+    width: 48,
+    paddingBottom: 3,
+    paddingLeft: 8,
+    paddingRight: 8,
+    marginRight: 20,
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: 24,
+    alignItems: 'center',
   },
   mounth:{
     color: "white",
-    fontWeight: "700",
+    fontWeight: "400",
     fontSize: 11,
-    marginLeft: 36,
-    marginBottom:32,
-    backgroundColor: "rgba(255, 255, 255, 0.1)", 
   },  
 
-
-  textPast : {
+  round: {
+    width: 207,
+    fontSize: 11,
+    fontWeight: "400",
+    marginTop: 16,
     color: 'white',
-    fontWeight: '700',
+  },
+  country:{
+    paddingTop: 6,
+    fontWeight: "700",
     fontSize: 15,
-    textAlign: 'center',
+    color: 'white',
+  },
+  racename:{
+    paddingTop: 6,
+    color: '#CCCDD7',
   },
 
-  boxPast:{
-    flex: 1,height: 44,
-    borderTopWidth: 5,
-    borderRightWidth: 5,
-    borderTopRightRadius: 15,
-    borderColor: 'red',
-    justifyContent: 'center',
-  },
 
-  boxUpcoming:{
-    flex: 1,height: 44,
-    borderTopWidth: 5,
-    borderRightWidth: 5,
-    borderTopRightRadius: 15,
-    borderColor: 'red',
-    justifyContent: 'center',
-  },
 
-  textUpcoming: {
-    textAlign: 'center',
-    color: 'white', 
-    fontWeight: '700',
-    fontSize: 15,
-  },
-  button: {
+
+
+  button:{
     flex:1,
     paddingTop:32,
     display: 'flex',
@@ -150,16 +136,36 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingBottom: 24,
   },
-  textDetails: {
-    color: 'blue', // Couleur du texte du bouton
-    fontWeight: 'bold', // Gras
+
+  textDrivers: {
+    textAlign: 'center',
+    color: 'grey', 
+    fontWeight: '700',
+    fontSize: 15,
   },
-  boxDetails : {
-    backgroundColor: '#3498db', // Couleur de fond du bouton
-    padding: 10, // Espacement intérieur du bouton
-    borderRadius: 5, // Coins arrondis
-    alignItems: 'center', // Alignement du contenu au centre
+  boxDrivers:{
+    flex: 1,height: 44,
+    borderTopWidth: 5,
+    borderRightWidth: 5,
+    justifyContent: 'center',
   },
+  textConstructors : {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+
+  boxConstructors : {
+    borderTopRightRadius: 15,
+    borderColor: 'red',
+    borderTopWidth: 2,
+    borderRightWidth: 2,
+    flex: 1,
+    height: 44,
+    justifyContent: 'center',
+  },
+
 });
 
 
