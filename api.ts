@@ -4,4 +4,10 @@ export class ApiClient {
   static getConstructors = async () => {
     return fetch(`${BASE_URL}/current/constructorStandings.json`).then((res) => res.json());
   };
+  static getDrivers = async () => {
+    return fetch(`${BASE_URL}/current/driverStandings.json`).then((res) => res.json());
+  };
+  static getRaces = async () => {
+    return fetch(`${BASE_URL}/2023.json`).then((res) => res.json());
+  };
 }

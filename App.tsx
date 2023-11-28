@@ -1,15 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {Drivers} from './src/pages/Drivers';
+import { createStackNavigator } from '@react-navigation/stack';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Drivers } from './src/pages/Drivers';
 import { HomePage } from './src/pages/HomesPage';
-import { Tracks } from './src/pages/Tracks';
-import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
+import { Races } from './src/pages/Races';
 import { Constructors } from './src/pages/Constructors';
+import { Details } from './src/pages/Details';
+import { Entypo, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const queryClient = new QueryClient(({
   defaultOptions:{
@@ -19,17 +22,36 @@ const queryClient = new QueryClient(({
   }
 })) 
 
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomePage} />
-        <Tab.Screen name="Drivers" component={Drivers} />
-        <Tab.Screen name="Tracks" component={Tracks} />
-        <Tab.Screen name="Constructors" component={Constructors} />
-      </Tab.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {/* Écran d'accueil avec la barre d'onglets */}
+          <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
+
+          {/* Écran en dehors de la barre d'onglets */}
+          <Stack.Screen name="Details" component={Details} />
+        </Stack.Navigator>
+        <Tab.Navigator screenOptions={{tabBarStyle: {backgroundColor: 'black', borderBlockColor: 'black'}}}>
+          <Tab.Screen name="Home" component={HomePage} options={{headerShown:false, tabBarActiveTintColor: 'white', tabBarLabel:"Home", tabBarIcon: ({focused}) => (<Entypo name="home" size={24} color={focused ? 'white' : 'gray'} />)}}/>
+          <Tab.Screen name="Drivers" component={Drivers} options={{headerShown:false, tabBarActiveTintColor: 'white', tabBarLabel:"Drivers", tabBarIcon: ({focused}) => (<MaterialCommunityIcons name="racing-helmet" size={24} color={focused ? 'white' : 'gray'} />)}}/>
+          <Tab.Screen name="Races" component={Races} options={{headerShown:false, tabBarActiveTintColor: 'white', tabBarLabel:"Races", tabBarIcon: ({focused}) => (<MaterialCommunityIcons name="flag-checkered" size={24} color={focused ? 'white' : 'gray'} />)}} />
+          <Tab.Screen name="Constructors" component={Constructors} options={{headerShown:false, tabBarActiveTintColor: 'white', tabBarLabel:"Teams", tabBarIcon: ({focused}) => (<MaterialIcons name="drive-eta" size={24} color={focused ? 'white' : 'gray'} />)}} />
+        </Tab.Navigator>
+      </NavigationContainer>
     </QueryClientProvider>
+  );
+}
+
+function HomeTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomePage} options={{ headerShown: false }} />
+      <Tab.Screen name="Drivers" component={Drivers} options={{ headerShown: false }} />
+      <Tab.Screen name="Races" component={Races} options={{ headerShown: false }} />
+      <Tab.Screen name="Constructors" component={Constructors} options={{ headerShown: false }} />
+    </Tab.Navigator>
   );
 }

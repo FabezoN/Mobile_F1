@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-export function Tracks() {
+
+export function Details() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Circuits</Text>
+        <Text>home</Text>
       </View>
     );
   }
-  
+        
