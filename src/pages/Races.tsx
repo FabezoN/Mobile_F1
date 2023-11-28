@@ -6,54 +6,44 @@ import {
   ImageRequireSource,
   TouchableOpacity,
   ScrollView,
+  Button,
 } from "react-native";
 import { useGetRaces } from "../hooks/useGetRaces";
 import { format } from "date-fns";
+import React from 'react';
 
-export function Races() {
+
+export function Races( { navigation }: { navigation: any}) {
   const { data } = useGetRaces();
-  const flagImagesMapping: Record<string, ImageRequireSource> = {
-    "Bahrain Grand Prix": require("../../assets/flag/bahrein.png"),
-    "Saudi Arabian Grand Prix": require("../../assets/flag/arabie-saoudite.png"),
-    "Australian Grand Prix": require("../../assets/flag/australie.png"),
-    "Azerbaijan Grand Prix": require("../../assets/flag/azerbaidjan.png"),
-    "Miami Grand Prix": require("../../assets/flag/etats-unis.png"),
-    "Monaco Grand Prix": require("../../assets/flag/monaco.png"),
-    "Spanish Grand Prix": require("../../assets/flag/espagne.png"),
-    "Canadian Grand Prix": require("../../assets/flag/canada.png"),
-    "Austrian Grand Prix": require("../../assets/flag/autriche.png"),
-    "British Grand Prix": require("../../assets/flag/royaume-uni.png"),
-    "Hungarian Grand Prix": require("../../assets/flag/hongrie.png"),
-    "Belgian Grand Prix": require("../../assets/flag/belgique.png"),
-    "Dutch Grand Prix": require("../../assets/flag/pays-bas.png"),
-    "Italian Grand Prix": require("../../assets/flag/italie.png"),
-    "Singapore Grand Prix": require("../../assets/flag/singapore.png"),
-    "Japanese Grand Prix": require("../../assets/flag/japon.png"),
-    "Qatar Grand Prix": require("../../assets/flag/qatar.png"),
-    "United States Grand Prix": require("../../assets/flag/etats-unis.png"),
-    "Mexico City Grand Prix": require("../../assets/flag/mexique.png"),
-    "São Paulo Grand Prix": require("../../assets/flag/bresil.png"),
-    "Las Vegas Grand Prix": require("../../assets/flag/etats-unis.png"),
-    "Abu Dhabi Grand Prix": require("../../assets/flag/abu-dhabi.png"),
-  };
-
+  const onPressDetails = () => {
+    navigation.navigate('Details')
+  }
   return (
     <ScrollView style={{ backgroundColor: "black" }}>
-      <Text style={styles.Schedule}>Schedule</Text>
+      <Text style={styles.Schedule}>Racing</Text>
+      <View style= {styles.button}>
+        <TouchableOpacity style={styles.boxDrivers}>
+          <Text style={styles.textDrivers}>Upcoming</Text>
+          </TouchableOpacity>
+        <TouchableOpacity  style={styles.boxConstructors}>
+          <Text style={styles.textConstructors}>Past</Text>
+        </TouchableOpacity>
+        </View>
       {data?.MRData.RaceTable.Races.map((item, i) => (
         <View style={styles.view} key={i}>
+          <View style={styles.left}>
+          <Text style={styles.date}>{format(new Date(item.FirstPractice.date), "dd")} - {format(new Date(item.date), "dd")}</Text>
+          <View style={styles.viewMounth}>
+            <Text style={styles.mounth}>{(new Date(item.FirstPractice.date).toLocaleString('en-EN', {month: 'short'}) )}</Text>
+          </View>
+          </View>
+          <View style={styles.right}>
+          <Text style={styles.round}>Round {item.round}</Text>
           <Text style={styles.country}>{item.Circuit.Location.country}</Text>
-          <Text style={styles.date}>
-            {format(new Date(item.date), "dd/MM/yyyy")}
-          </Text>
-          <Text style={styles.time}>{formatTime(item.time)}</Text>
-          <Image
-            style={styles.flag}
-            source={flagImagesMapping[item.raceName]}
-          />
+          <Text style={styles.racename}>{item.raceName}</Text>
+          </View>
         </View>
       ))}
-      <View style={{ height: 200 }}></View>
     </ScrollView>
   );
 }
@@ -66,46 +56,119 @@ const styles = StyleSheet.create({
     fontSize: 41, 
     paddingTop: 71,
     paddingLeft: 27,
-    paddingBottom: 24,
+
   },
   view: {
-    width: 336,
-    height: 148,
+    height: 104,
     backgroundColor: "#1B1A19",
-    left: 25,
     marginBottom: 15,
     borderRadius: 14,
+    display: "flex",
+    flexDirection: "row",
+    marginLeft: 27,
+    marginRight: 27,
   },
 
-  country: {
+  left:{
+    flex: 1,
+    width: 48,
+    marginLeft: 28,
+    marginTop: 30,
+    marginBottom: 29,
+  },
+  right:{
+    width: 207,
+    marginLeft: 47,
+  },
+  date:{
+    MarginLeft: 20,
     color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 20,
     fontWeight: "700",
+    fontSize: 13,
+    paddingBottom: 11,
+    alignItems: 'center',
   },
-  date: {
+  viewMounth:{
+    display:'flex',
+    paddingTop: 3,
+    width: 48,
+    paddingBottom: 3,
+    paddingLeft: 8,
+    paddingRight: 8,
+    marginRight: 20,
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    borderRadius: 24,
+    alignItems: 'center',
+  },
+
+  mounth:{
     color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 20,
+    fontWeight: "400",
+    fontSize: 11,
+  },  
+
+  round: {
+    width: 207,
+    fontSize: 11,
+    fontWeight: "400",
+    marginTop: 16,
+    color: 'white',
+  },
+  country:{
+    paddingTop: 6,
     fontWeight: "700",
+    fontSize: 15,
+    color: 'white',
   },
-  time: {
-    color: "white",
-    left: 20,
-    top: 15,
-    fontSize: 16,
-    fontWeight: "700",
-    paddingTop10: 20,
+  racename:{
+    paddingTop: 6,
+    color: '#CCCDD7',
   },
-  flag: {
-    position: "absolute",
-    width: 100,
-    height: 100,
-    left: 216,
-    bottom: 50,
+
+
+
+
+
+  button:{
+    flex:1,
+    paddingTop:32,
+    display: 'flex',
+    flexDirection: 'row',
+    paddingRight: 27,
+    paddingLeft: 27,
+    justifyContent: 'space-between',
+    paddingBottom: 24,
   },
+
+  textDrivers: {
+    textAlign: 'center',
+    color: 'grey', 
+    fontWeight: '700',
+    fontSize: 15,
+  },
+  boxDrivers:{
+    flex: 1,height: 44,
+    borderTopWidth: 5,
+    borderRightWidth: 5,
+    justifyContent: 'center',
+  },
+  textConstructors : {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+
+  boxConstructors : {
+    borderTopRightRadius: 15,
+    borderColor: 'red',
+    borderTopWidth: 2,
+    borderRightWidth: 2,
+    flex: 1,
+    height: 44,
+    justifyContent: 'center',
+  },
+
 });
 
 

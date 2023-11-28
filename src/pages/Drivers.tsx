@@ -1,8 +1,8 @@
 import { Text, ScrollView, View, Image, StyleSheet, TouchableOpacity, ImageRequireSource } from 'react-native';
-import { useGetProducts } from '../hooks/useGetDrivers';
+import { useGetDrivers } from '../hooks/useGetDrivers';
 import React from 'react';
 
-const driverImagesMapping: Record<string, ImageRequireSource> = {
+export const driverImagesMapping: Record<string, ImageRequireSource> = {
   'hamilton': require('../../assets/Drivers/hamilton.png'),
   'alonso': require('../../assets/Drivers/alonso.png'),
   'ricciardo': require('../../assets/Drivers/ricciardo.png'),
@@ -28,7 +28,7 @@ const driverImagesMapping: Record<string, ImageRequireSource> = {
 }
 
 export function Drivers({ navigation }: any) {
-  const {data} = useGetProducts();
+  const {data} = useGetDrivers();
   const onPress = () => {
     navigation.navigate('Constructors')
   }
@@ -81,14 +81,14 @@ const styles = StyleSheet.create({
   },
   boxDrivers:{
     flex: 1,height: 44,
-    borderTopWidth: 5,
-    borderRightWidth: 5,
+    borderTopWidth: 2,
+    borderRightWidth: 2,
     borderTopRightRadius: 15,
     borderColor: 'red',
     justifyContent: 'center',
   },
   textConstructors : {
-    color: 'white',
+    color: 'grey',
     fontWeight: '700',
     fontSize: 15,
     textAlign: 'center',
@@ -159,7 +159,6 @@ const styles = StyleSheet.create({
     flex : 1,
     paddingRight: 46,
     paddingLeft: 20,
-    
   },
   ImageView : {
     flex : 1,
