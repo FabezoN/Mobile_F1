@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
   },
   boxDrivers:{
     flex: 1,height: 44,
-    borderTopWidth: 5,
-    borderRightWidth: 5,
+    borderTopWidth: 2,
+    borderRightWidth: 2,
     borderTopRightRadius: 15,
     borderColor: 'red',
     justifyContent: 'center',
