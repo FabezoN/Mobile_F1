@@ -11,6 +11,7 @@ import {
 import { useGetRaces } from "../hooks/useGetRaces";
 import { format } from "date-fns";
 import React from 'react';
+import { getMonth } from 'date-fns';
 
 const flagImagesMapping: Record<string, ImageRequireSource> = {
   "Bahrain Grand Prix": require("../../assets/flag/bahrein.png"),
@@ -58,7 +59,7 @@ export function Races( { navigation }: { navigation: any}) {
         <View style={styles.view} key={i}>
           <View style={styles.left}>
           <Text style={styles.date}>{format(new Date(item.FirstPractice.date), "dd")} - {format(new Date(item.date), "dd")}</Text>
-          <Text style={styles.mounth}>{format(new Date(item.FirstPractice.date), "MM")}</Text>
+          <Text style={styles.mounth}>{(new Date(item.FirstPractice.date).toLocaleString('en-EN', {month: 'short'}) )}</Text>
           </View>
           <View style={styles.right}>
           <Text style={styles.round}>Round {item.round}</Text>
