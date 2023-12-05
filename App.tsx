@@ -9,7 +9,6 @@ import { Drivers } from './src/pages/Drivers';
 import { HomePage } from './src/pages/HomesPage';
 import { Races } from './src/pages/Races';
 import { Constructors } from './src/pages/Constructors';
-import { Details } from './src/pages/Details';
 import { Entypo, MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +31,6 @@ export default function App() {
           <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
 
           {/* Écran en dehors de la barre d'onglets */}
-          <Stack.Screen name="Details" component={Details} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

@@ -37,6 +37,9 @@ export function Races( { navigation }: { navigation: any}) {
             <Text style={styles.mounth}>{(new Date(item.FirstPractice.date).toLocaleString('en-EN', {month: 'short'}) )}</Text>
           </View>
           </View>
+          <View style={styles.middle}>
+
+          </View>
           <View style={styles.right}>
           <Text style={styles.round}>Round {item.round}</Text>
           <Text style={styles.country}>{item.Circuit.Location.country}</Text>
@@ -75,8 +78,14 @@ const styles = StyleSheet.create({
     marginBottom: 29,
   },
   right:{
-    width: 207,
+    display: "flex",
     marginLeft: 47,
+  },
+  middle:{
+    backgroundColor : "rgba(255, 255, 255, 0.1)",
+    width: 1,
+    marginTop: 16,
+    marginBottom: 16,
   },
   date:{
     MarginLeft: 20,
