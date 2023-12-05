@@ -1,6 +1,29 @@
 import {useQuery} from "@tanstack/react-query";
 import { ApiClient } from "../../api";
 
+export type DriverStandingTable = {
+    position: number;
+    positionText: number;
+    points: number;
+    wins: string;
+    Driver: {
+        driverId: string,
+        permanentNumber: string,
+        code: string,
+        url: string,
+        givenName: string,
+        familyName: string,
+        dateOfBirth: string,
+        nationality: string,
+    }
+    Constructors: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+    } []
+}
+
 
 export type DriversTable = {
     MRData:{
@@ -15,28 +38,7 @@ export type DriversTable = {
             StandingsLists: {
                 season: string;
                 round: string;
-                DriverStandings: {
-                    position: number;
-                    positionText: number;
-                    points: number;
-                    wins: string;
-                    Driver: {
-                        driverId: string,
-                        permanentNumber: string,
-                        code: string,
-                        url: string,
-                        givenName: string,
-                        familyName: string,
-                        dateOfBirth: string,
-                        nationality: string,
-                    }
-                    Constructors: {
-                        constructorId: string;
-                        url: string;
-                        name: string;
-                        nationality: string;
-                    } []
-                }[]
+                DriverStandings: DriverStandingTable[]
             }[]
         }
     }

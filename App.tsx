@@ -4,12 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import { StyleSheet, Image } from 'react-native'; // Ajout de Image
-import { Drivers } from './src/pages/Drivers';
+import { Standings } from './src/pages/Standings';
 import { HomePage } from './src/pages/HomesPage'; // Correction de "HomesPage" à "HomePage"
 import { Races } from './src/pages/Races';
-import { Constructors } from './src/pages/Constructors';
-import { Details } from './src/pages/Details';
 import { LinearGradient } from 'expo-linear-gradient';
+import { MorePage } from './src/pages/morePage';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -55,7 +54,7 @@ function HomeTabs() {
             }} />
       <Tab.Screen
         name="Video"
-        component={Constructors}
+        component={Races}
         options={{
           headerShown: false,
           tabBarActiveTintColor: 'white',
@@ -81,7 +80,7 @@ function HomeTabs() {
         }} />
       <Tab.Screen
         name="StandingsTab"
-        component={Drivers}
+        component={Standings}
         options={{
           headerShown: false,
           tabBarActiveTintColor: 'white',
@@ -94,7 +93,7 @@ function HomeTabs() {
         }} />
       <Tab.Screen
         name="More"
-        component={Constructors}
+        component={MorePage}
         options={{
           headerShown: false,
           tabBarActiveTintColor: 'white',
