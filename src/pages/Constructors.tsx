@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, ScrollView,Image, ImageRequir
 import { useGetProducts } from '../hooks/useGetConstructors';
 
 
-const ConstructorImagesMapping: Record<string, ImageRequireSource> = {
+export const ConstructorImagesMapping: Record<string, ImageRequireSource> = {
   'red_bull': require('../../assets/Constructors/red_bull.png'),
   'mercedes': require('../../assets/Constructors/mercedes.png'),
   'ferrari': require('../../assets/Constructors/ferrari.png'),
@@ -74,7 +74,7 @@ export function Constructors({ navigation }: any) {
 
     textDrivers: {
       textAlign: 'center',
-      color: 'white', 
+      color: 'grey', 
       fontWeight: '700',
       fontSize: 15,
     },
@@ -94,8 +94,8 @@ export function Constructors({ navigation }: any) {
     boxConstructors : {
       borderTopRightRadius: 15,
       borderColor: 'red',
-      borderTopWidth: 5,
-      borderRightWidth: 5,
+      borderTopWidth: 2,
+      borderRightWidth: 2,
       flex: 1,
       height: 44,
       justifyContent: 'center',
@@ -116,7 +116,6 @@ export function Constructors({ navigation }: any) {
       flex : 1,
       paddingRight: 46,
       paddingLeft: 20,
-  
     },
 
     position : {
