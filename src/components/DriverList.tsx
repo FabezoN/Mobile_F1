@@ -19,6 +19,9 @@ const DriverList = ({
         <TouchableOpacity style={styles.view} key={i} onPress={() => {
           navigation.navigate('DriversDetails', {
             driverId: item.Driver.driverId,
+            position: item.position,
+            constructors: item.Constructors[0].name,
+            points: item.points,
           })
         }}>
           <View style={styles.textView}>
