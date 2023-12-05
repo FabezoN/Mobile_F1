@@ -9,6 +9,11 @@ import { HomePage } from './src/pages/HomesPage'; // Correction de "HomesPage" Ã
 import { Races } from './src/pages/Races';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MorePage } from './src/pages/morePage';
+import { FlagIcon, FlagIconFocused } from './src/components/FlagIcon';
+import { StandingIcon, StandingIconFocused } from './src/components/StandingsIcon';
+import { VideoIcon, VideoIconFocused } from './src/components/VideoIcon';
+import { LatestIcon, LatestIconFocused } from './src/components/LatestIcon';
+import { MoreIcon, MoreIconFocused } from './src/components/MoreIcon';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -40,17 +45,17 @@ function HomeTabs() {
     <Tab.Navigator
       screenOptions={{ tabBarStyle: { backgroundColor: 'black', borderTopWidth: 0} }}>
           <Tab.Screen
-            name="Standings"
+            name="Latest"
             component={HomePage}
             options={{
               headerShown: false,
               tabBarActiveTintColor: 'white',
-              tabBarLabel: 'Standings',
+              tabBarLabel: 'Latest',
               tabBarIcon: ({ focused }) => focused ?
                 <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center' }}>
-                  <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/latest.png')} />
+                  <LatestIconFocused />
                 </LinearGradient>
-              : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/latest.png')} />
+              : <LatestIcon />
             }} />
       <Tab.Screen
         name="Video"
@@ -61,10 +66,10 @@ function HomeTabs() {
           tabBarLabel: 'Video',
           tabBarIcon: ({ focused }) => focused ?
             <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center' }}>
-              <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/video.png')} />
+              <VideoIconFocused />  
             </LinearGradient>
-          : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/video.png')} />
-        }} />
+          : <VideoIcon /> 
+          }} />
       <Tab.Screen
         name="Races"
         component={Races}
@@ -74,9 +79,9 @@ function HomeTabs() {
           tabBarLabel: 'Racing',
           tabBarIcon: ({ focused }) => focused ?
             <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center'}}>
-              <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/racing.png')} />
+              <FlagIconFocused />
             </LinearGradient>
-          : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/racing.png')} />
+          : <FlagIcon />
         }} />
       <Tab.Screen
         name="StandingsTab"
@@ -87,10 +92,10 @@ function HomeTabs() {
           tabBarLabel: 'Standings',
           tabBarIcon: ({ focused }) => focused ?
             <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center' }}>
-              <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/standings.png')} />
+              <StandingIconFocused />  
             </LinearGradient>
-          : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/standings.png')} />
-        }} />
+          : <StandingIcon /> 
+          }} />
       <Tab.Screen
         name="More"
         component={MorePage}
@@ -100,9 +105,9 @@ function HomeTabs() {
           tabBarLabel: 'More',
           tabBarIcon: ({ focused }) => focused ?
             <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center' }}>
-              <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/more.png')} />
+              <MoreIconFocused />
             </LinearGradient>
-          : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/more.png')} />
+          : <MoreIcon />
         }} />
     </Tab.Navigator>
   );
