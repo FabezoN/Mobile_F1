@@ -4,12 +4,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import { StyleSheet, Image } from 'react-native'; // Ajout de Image
-import { Drivers } from './src/pages/Drivers';
+import { Standings } from './src/pages/Standings';
 import { HomePage } from './src/pages/HomesPage'; // Correction de "HomesPage" à "HomePage"
 import { Races } from './src/pages/Races';
-import { Constructors } from './src/pages/Constructors';
 import { LinearGradient } from 'expo-linear-gradient';
-import { DriversDetails } from './src/pages/DriversDetails';
+import { MorePage } from './src/pages/morePage';
+import { FlagIcon, FlagIconFocused } from './src/components/FlagIcon';
+import { StandingIcon, StandingIconFocused } from './src/components/StandingsIcon';
+import { VideoIcon, VideoIconFocused } from './src/components/VideoIcon';
+import { LatestIcon, LatestIconFocused } from './src/components/LatestIcon';
+import { MoreIcon, MoreIconFocused } from './src/components/MoreIcon';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -28,7 +32,7 @@ export default function App() {
         <Stack.Navigator>
           {/* Écran d'accueil avec la barre d'onglets */}
           <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
-
+          
           {/* Écran en dehors de la barre d'onglets */}
           <Stack.Screen name="DriversDetails" component={DriversDetails} />
         </Stack.Navigator>
@@ -42,31 +46,31 @@ function HomeTabs() {
     <Tab.Navigator
       screenOptions={{ tabBarStyle: { backgroundColor: 'black', borderTopWidth: 0} }}>
           <Tab.Screen
-            name="Standings"
+            name="Latest"
             component={HomePage}
             options={{
               headerShown: false,
               tabBarActiveTintColor: 'white',
-              tabBarLabel: 'Standings',
+              tabBarLabel: 'Latest',
               tabBarIcon: ({ focused }) => focused ?
                 <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center' }}>
-                  <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/latest.png')} />
+                  <LatestIconFocused />
                 </LinearGradient>
-              : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/latest.png')} />
+              : <LatestIcon />
             }} />
       <Tab.Screen
         name="Video"
-        component={Constructors}
+        component={Races}
         options={{
           headerShown: false,
           tabBarActiveTintColor: 'white',
           tabBarLabel: 'Video',
           tabBarIcon: ({ focused }) => focused ?
             <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center' }}>
-              <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/video.png')} />
+              <VideoIconFocused />  
             </LinearGradient>
-          : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/video.png')} />
-        }} />
+          : <VideoIcon /> 
+          }} />
       <Tab.Screen
         name="Races"
         component={Races}
@@ -76,35 +80,35 @@ function HomeTabs() {
           tabBarLabel: 'Racing',
           tabBarIcon: ({ focused }) => focused ?
             <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center'}}>
-              <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/racing.png')} />
+              <FlagIconFocused />
             </LinearGradient>
-          : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/racing.png')} />
+          : <FlagIcon />
         }} />
       <Tab.Screen
         name="StandingsTab"
-        component={Drivers}
+        component={Standings}
         options={{
           headerShown: false,
           tabBarActiveTintColor: 'white',
           tabBarLabel: 'Standings',
           tabBarIcon: ({ focused }) => focused ?
             <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center' }}>
-              <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/standings.png')} />
+              <StandingIconFocused />  
             </LinearGradient>
-          : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/standings.png')} />
-        }} />
+          : <StandingIcon /> 
+          }} />
       <Tab.Screen
         name="More"
-        component={Constructors}
+        component={MorePage}
         options={{
           headerShown: false,
           tabBarActiveTintColor: 'white',
           tabBarLabel: 'More',
           tabBarIcon: ({ focused }) => focused ?
             <LinearGradient colors={['rgba(238,0,0,0.5)', 'transparent']} style={{ width: '100%', height: 38, justifyContent: 'center', alignItems: 'center' }}>
-              <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/more.png')} />
+              <MoreIconFocused />
             </LinearGradient>
-          : <Image style={styles.imageDriver} tintColor={focused ? 'white' : 'gray'} source={require('../Mobile_F1/assets/more.png')} />
+          : <MoreIcon />
         }} />
     </Tab.Navigator>
   );
