@@ -62,7 +62,6 @@ const PastRaceList = () => {
     marginBottom: 16,
   },
   date:{
-    MarginLeft: 20,
     color: "white",
     fontWeight: "700",
     fontSize: 13,

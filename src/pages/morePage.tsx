@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView,Image, ImageRequireSource } from 'react-native';
+import { StyleSheet, Text, View, ScrollView} from 'react-native';
 
 export function MorePage() {
       return (
