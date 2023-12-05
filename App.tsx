@@ -29,7 +29,7 @@ export default function App() {
         <Stack.Navigator>
           {/* Écran d'accueil avec la barre d'onglets */}
           <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
-
+          
           {/* Écran en dehors de la barre d'onglets */}
         </Stack.Navigator>
       </NavigationContainer>
