@@ -3,19 +3,10 @@ import { useGetDrivers } from '../hooks/useGetDrivers';
 import { useGetProducts } from '../hooks/useGetConstructors'; 
 
 export function HomePage({ navigation }: any) {
-  const {data} = useGetDrivers();
-  const {data:dataCons} = useGetProducts();
-  const onPress = () => {
-    navigation.navigate('Drivers')
-  }
-  const OnPressCons =() =>{
-    navigation.navigate('Constructors')
-  }
     return (
       <ScrollView style={styles.main}>
         <Text style={styles.Home}>Home</Text>
         <Text style={styles.Top}>Top Drivers :  </Text>
-       
       </ScrollView>
     );
   }
