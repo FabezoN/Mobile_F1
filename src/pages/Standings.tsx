@@ -14,11 +14,19 @@ export function Standings() {
       <ScrollView style={{backgroundColor: 'black' }}>
         <Text style={styles.standings}>Standings</Text>
         <View style= {styles.button}>
-          <TouchableOpacity style={styles.boxDrivers} onPress={() => setActiveTab('Drivers')} >
-            <Text style={styles.textDrivers}>Drivers</Text>
+        <TouchableOpacity
+          style={activeTab === 'Drivers' ? styles.activeButton : styles.boxDrivers}
+          onPress={() => setActiveTab('Drivers')}>
+            <Text style={activeTab === 'Drivers' ? styles.activeText : styles.textConstructors}>
+            Drivers
+          </Text>
           </TouchableOpacity>
-          <TouchableOpacity  onPress={() => setActiveTab('Constructors')} style={styles.boxConstructors}>
-            <Text style={styles.textConstructors}>Constructors</Text>
+          <TouchableOpacity
+          style={activeTab === 'Constructors' ? styles.activeButton : styles.boxDrivers}
+          onPress={() => setActiveTab('Constructors')}>
+            <Text style={activeTab === 'Constructors' ? styles.activeText : styles.textConstructors}>
+            Constructors
+          </Text>
           </TouchableOpacity>
         </View>
         {activeTab === 'Drivers' ? (
@@ -42,13 +50,13 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
 
-  textDrivers: {
+  activeText: {
     textAlign: 'center',
     color: 'white', 
     fontWeight: '700',
     fontSize: 15,
   },
-  boxDrivers:{
+  activeButton:{
     flex: 1,height: 44,
     borderTopWidth: 2,
     borderRightWidth: 2,
@@ -63,7 +71,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  boxConstructors : {
+  boxDrivers : {
     borderTopWidth: 5,
     borderRightWidth: 5,
     flex: 1,

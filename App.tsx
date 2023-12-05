@@ -14,6 +14,7 @@ import { StandingIcon, StandingIconFocused } from './src/components/StandingsIco
 import { VideoIcon, VideoIconFocused } from './src/components/VideoIcon';
 import { LatestIcon, LatestIconFocused } from './src/components/LatestIcon';
 import { MoreIcon, MoreIconFocused } from './src/components/MoreIcon';
+import { Video } from './src/pages/Video';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -59,7 +60,7 @@ function HomeTabs() {
             }} />
       <Tab.Screen
         name="Video"
-        component={Races}
+        component={Video}
         options={{
           headerShown: false,
           tabBarActiveTintColor: 'white',
