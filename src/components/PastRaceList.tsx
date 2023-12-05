@@ -1,10 +1,30 @@
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useRef, useEffect } from 'react';
 import { useGetRaces } from '../hooks/useGetRaces';
 import { format } from "date-fns";
+import LottieView from 'lottie-react-native';
 
 const PastRaceList = () => {
-    const { data } = useGetRaces();
+    const { data, isFetching } = useGetRaces();
+    const animation = useRef(null)
+    if (isFetching) {
+        return (
+            <View style={styles.animationContainer}>
+            <LottieView
+              autoPlay
+              ref={animation}
+              style={{
+                width: 200,
+                height: 200,
+                backgroundColor: 'black',
+              }}
+              // Find more Lottie files at https://lottiefiles.com/featured
+              source={require('../../assets/5VEighXCKj.json')}
+            />
+          </View>
+        );
+      }
+
     return (
       <>
         {data?.MRData.RaceTable.Races.map((item, i) => (
@@ -16,7 +36,6 @@ const PastRaceList = () => {
           </View>
           </View>
           <View style={styles.middle}>
-
           </View>
           <View style={styles.right}>
           <Text style={styles.round}>Round {item.round}</Text>
@@ -103,6 +122,13 @@ const PastRaceList = () => {
   racename:{
     paddingTop: 6,
     color: '#CCCDD7',
+  },
+
+  animationContainer: {
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
   },
 })
 
