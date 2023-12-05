@@ -14,6 +14,7 @@ import { StandingIcon, StandingIconFocused } from './src/components/StandingsIco
 import { VideoIcon, VideoIconFocused } from './src/components/VideoIcon';
 import { LatestIcon, LatestIconFocused } from './src/components/LatestIcon';
 import { MoreIcon, MoreIconFocused } from './src/components/MoreIcon';
+import { DriversDetails } from './src/pages/DriversDetails';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -32,9 +33,9 @@ export default function App() {
         <Stack.Navigator>
           {/* Écran d'accueil avec la barre d'onglets */}
           <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
-          
+          <Stack.Screen name="DriversDetails" component={DriversDetails} options={{ headerShown: false }} />
           {/* Écran en dehors de la barre d'onglets */}
-          <Stack.Screen name="DriversDetails" component={DriversDetails} />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>
