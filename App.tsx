@@ -9,6 +9,7 @@ import { HomePage } from './src/pages/HomesPage'; // Correction de "HomesPage" Ã
 import { Races } from './src/pages/Races';
 import { Constructors } from './src/pages/Constructors';
 import { LinearGradient } from 'expo-linear-gradient';
+import { DriversDetails } from './src/pages/DriversDetails';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -29,6 +30,7 @@ export default function App() {
           <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
 
           {/* Ã‰cran en dehors de la barre d'onglets */}
+          <Stack.Screen name="DriversDetails" component={DriversDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

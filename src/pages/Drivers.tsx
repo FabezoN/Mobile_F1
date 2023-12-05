@@ -32,6 +32,9 @@ export function Drivers({ navigation }: any) {
   const onPress = () => {
     navigation.navigate('Constructors')
   }
+  const onPressDrivers = () => {
+    navigation.navigate('DriversDetails')
+  }
     return (
       <ScrollView style={{backgroundColor: 'black' }}>
         <Text style={styles.standings}>Standings</Text>
@@ -44,7 +47,7 @@ export function Drivers({ navigation }: any) {
           </TouchableOpacity>
         </View>
         {data?.MRData.StandingsTable.StandingsLists[0].DriverStandings.map((item, i) => (
-          <View style={styles.view} key={i}>
+          <TouchableOpacity onPress={onPressDrivers} style={styles.view} key={i}>
             <View style={styles.textView}>
               <Text style={styles.position} >{item.position}{"\n"}</Text>
               <Text style={styles.givenName} >{item.Driver.givenName}</Text>
@@ -55,7 +58,7 @@ export function Drivers({ navigation }: any) {
               <Image style={styles.imageDriver} source={driverImagesMapping[item.Driver.driverId]} />
               <Text style={styles.points} >{item.points}{' PTS'}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     );
