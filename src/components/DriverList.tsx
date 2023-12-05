@@ -2,7 +2,6 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { DriverStandingTable } from '../hooks/useGetDrivers'
 import { driverImagesMapping } from './DriverList.constants'
 import React, { useState } from 'react';
-import { DriversDetails } from '../pages/DriversDetails';
 import { useNavigation } from '@react-navigation/core';
 
 interface DriverListProps {
