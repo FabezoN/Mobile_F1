@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView,Image, ImageRequireSource } from 'react-native';
 
-export function MorePage() {
+export function Video() {
       return (
         <ScrollView style={styles.main}>
-            <Text style={styles.more}>More</Text>
+            <Text style={styles.video}>Video</Text>
             <View style={styles.textView}>
                 <Text style={styles.Text}>In construction...</Text>
             </View>
@@ -26,7 +26,7 @@ export function MorePage() {
             fontWeight: '700',
             fontSize: 20,
         },
-        more: {
+        video: {
             fontWeight: '700',
             color: 'white', 
             fontSize: 41, 
