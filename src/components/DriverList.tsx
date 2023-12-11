@@ -1,19 +1,29 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { DriverStandingTable } from '../hooks/useGetDrivers'
 import { driverImagesMapping } from './DriverList.constants'
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/core';
 
 interface DriverListProps {
   drivers?: DriverStandingTable[]
 }
 
 const DriverList = ({
+  
   drivers,
 }: DriverListProps) => {
+  const navigation = useNavigation();
   return (
     <>
       {drivers?.map((item, i) => (
-        <View style={styles.view} key={i}>
+        <TouchableOpacity style={styles.view} key={i} onPress={() => {
+          navigation.navigate('DriversDetails', {
+            driverId: item.Driver.driverId,
+            position: item.position,
+            constructors: item.Constructors[0].name,
+            points: item.points,
+          })
+        }}>
           <View style={styles.textView}>
             <Text style={styles.position} >{item.position}{"\n"}</Text>
             <Text style={styles.givenName} >{item.Driver.givenName}</Text>
@@ -24,7 +34,7 @@ const DriverList = ({
             <Image style={styles.imageDriver} source={driverImagesMapping[item.Driver.driverId]} />
             <Text style={styles.points} >{item.points}{' PTS'}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       ))}
     </>
   )
