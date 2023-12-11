@@ -1,8 +1,11 @@
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useRef, useEffect } from 'react';
+import { View, Text, StyleSheet,  } from 'react-native'
+import LottieView from 'lottie-react-native';
+
 
 
 const UpcommingRaceList = () => {
+  const animation = useRef(null)
     return (
       <>
       <Text style={styles.Text}>No upcomming races...</Text>
@@ -19,5 +22,7 @@ const UpcommingRaceList = () => {
         fontSize: 15,
         textAlign: 'center',
         marginTop:239,
-    }
+    },
     })
+
+
