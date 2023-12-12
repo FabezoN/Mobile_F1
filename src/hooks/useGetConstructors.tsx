@@ -33,8 +33,6 @@ export type ConstructorStanding = {
     }
 }
 
-type Response = Constructor[];
-
 export const useGetProducts = () => {
     return useQuery<ConstructorStanding>({
       queryKey: ["ConstructorStanding"],
