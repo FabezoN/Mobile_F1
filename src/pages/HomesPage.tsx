@@ -1,12 +1,28 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Pressable, ImageRequireSource, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Pressable, ImageRequireSource, Image, FlatList } from 'react-native';
 import { useGetDrivers } from '../hooks/useGetDrivers';
 import { useGetProducts } from '../hooks/useGetConstructors'; 
+import React from 'react';
+import { driverImagesMapping } from '../components/DriverList.constants';
 
 export function HomePage({ navigation }: any) {
+  const {data} = useGetDrivers();
     return (
       <ScrollView style={styles.main}>
         <Text style={styles.Home}>Home</Text>
         <Text style={styles.Top}>Top Drivers :  </Text>
+        <FlatList
+        horizontal={true}
+        data={data?.MRData.StandingsTable.StandingsLists[0].DriverStandings}
+        renderItem={({ item }) => (
+          <View style={styles.viewDrivers}>
+            <View style={styles.drivers}>
+              <Image style={styles.imageDriver} source={driverImagesMapping[item.Driver.driverId]} />
+              <Text style={styles.positionsDrivers}>{item.position}</Text>
+              <Text style={styles.familynameDrivers}>{item.Driver.familyName}</Text>
+            </View>
+          </View>
+        )}
+        />
       </ScrollView>
     );
   }

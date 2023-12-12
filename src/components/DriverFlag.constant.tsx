@@ -1,0 +1,26 @@
+import { ImageRequireSource } from 'react-native'
+
+export const driverFlagMapping: Record<string, ImageRequireSource> = {
+    'hamilton': require('../../assets/Flag/united-kingdom.png'),
+    'alonso': require('../../assets/Flag/spain.png'),
+    'ricciardo': require('../../assets/Flag/australia.png'),
+    'max_verstappen': require('../../assets/Flag/netherlands.png'),
+    'leclerc': require('../../assets/Flag/monaco.png'),
+    'sainz': require('../../assets/Flag/spain.png'),
+    'bottas': require('../../assets/Flag/finland.png'),
+    'gasly': require('../../assets/Flag/france.png'),
+    'ocon': require('../../assets/Flag/france.png'),
+    'perez': require('../../assets/Flag/mexico.png'),
+    'norris': require('../../assets/Flag/united-kingdom.png'),
+    'russell': require('../../assets/Flag/united-kingdom.png'),
+    'piastri': require('../../assets/Flag/australia.png'),
+    'stroll': require('../../assets/Flag/canada.png'),
+    'albon': require('../../assets/Flag/thailand.png'),
+    'tsunoda': require('../../assets/Flag/japan.png'),
+    'hulkenberg': require('../../assets/Flag/germany.png'),
+    'zhou': require('../../assets/Flag/china.png'),
+    'kevin_magnussen': require('../../assets/Flag/denmark.png'),
+    'lawson': require('../../assets/Flag/new-zealand.png'),
+    'sargeant': require('../../assets/Flag/united-states.png'),
+    'de_vries': require('../../assets/Flag/netherlands.png'),
+  }
