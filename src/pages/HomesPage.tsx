@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Pressable, ImageRequireSource, Image, FlatList } from 'react-native';
 import { useGetDrivers } from '../hooks/useGetDrivers';
-import { useGetProducts } from '../hooks/useGetConstructors'; 
 import React from 'react';
 import { driverImagesMapping } from '../components/DriverList.constants';
 
