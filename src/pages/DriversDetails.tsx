@@ -3,6 +3,7 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Text, View, ActivityIndicator, Image, StyleSheet, Animated } from 'react-native';
 import { driverImagesMapping } from '../components/DriverList.constants';
+import { driverFlagMapping } from '../components/DriverFlag.constant';
 
 
 export function DriversDetails() {
@@ -68,6 +69,7 @@ export function DriversDetails() {
           <Text style={{ color: 'white', fontWeight: '700', fontSize: 40, lineHeight: 25, paddingLeft: 26, paddingTop: 50 }}>{driverDetails.familyName}</Text>
           <Text style={{ color: '#CCCDD7', paddingLeft: 26, fontWeight: '500', fontSize: 14, paddingTop: 10 }}>{moment().diff(driverDetails.dateOfBirth, 'years')} ans</Text>
           <Text style={{ color: '#CCCDD7', paddingLeft: 26, fontWeight: '500', fontSize: 14, paddingTop: 10 }}>{constructors}</Text>
+          <Image style={{ width: 78, height: 48, position: 'absolute', marginTop: 177, marginLeft: 26 }} source={driverFlagMapping[driverId]} />
         </Animated.View></>
       )}
     </View>
